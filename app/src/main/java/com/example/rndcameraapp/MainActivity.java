@@ -1,5 +1,6 @@
 // Make sure this package name matches your project!
 package com.example.rndcameraapp;
+
 import android.Manifest;
 import android.content.Context;
 import android.content.pm.PackageManager;
@@ -13,14 +14,26 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Surface;
 import android.view.TextureView;
-import android.widget.Toast;
+import android.widget.Toast; // Import for Toast
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import java.util.Arrays;
+
 public class MainActivity extends AppCompatActivity {
+
+    // --- ADDED FOR PHASE 2 ---
+    // 1. Load the native library
+    static {
+        System.loadLibrary("native-lib");
+    }
+
+    // 2. Declare the native function
+    public native String stringFromJNI();
+    // --- END OF PHASE 2 ADDITIONS ---
+
 
     private static final String TAG = "MainActivity";
     private static final int CAMERA_PERMISSION_REQUEST_CODE = 101;
@@ -43,12 +56,19 @@ public class MainActivity extends AppCompatActivity {
         public void onSurfaceTextureUpdated(@NonNull SurfaceTexture surface) {}
     };
     @Override
-    protected void onCreate(Bundle savedInstanceState) { // <-- Fixed! The extra period is removed.
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         textureView = findViewById(R.id.textureView);
         textureView.setSurfaceTextureListener(surfaceTextureListener);
+
+        // --- ADDED FOR PHASE 2 ---
+        // 3. Call the function and show a Toast
+        String hello = stringFromJNI();
+        Toast.makeText(this, hello, Toast.LENGTH_LONG).show();
+        // --- END OF PHASE 2 ADDITIONS ---
     }
+
     private void checkCameraPermission() {
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA}, CAMERA_PERMISSION_REQUEST_CODE);
@@ -152,5 +172,3 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 }
-
-
