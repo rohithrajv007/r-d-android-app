@@ -6,7 +6,7 @@ This project is a technical assessment to build an Android application that capt
 
 We are currently in the middle of development.
 
-* [✅] **Phase 1: Camera Feed Integration:** Basic camera setup and display on a `TextureView` (now replaced).
+* [✅] **Phase 1: Camera Feed Integration:** Basic camera setup and display on a `TextureView`.
 * [✅] **Phase 2: JNI Bridge:** Successful connection between Java and C++ confirmed with a "Hello World" toast message.
 * [✅] **Phase 3: OpenGL ES Setup:** `GLSurfaceView` and `MainRenderer` classes are configured, displaying a solid blue test screen.
 * [✅] **Phase 4: OpenCV C++ Integration:** The OpenCV 4.12 library is fully imported, linked via CMake, and tested. The app now displays a "OpenCV version: 4.12.0" toast, confirming the C++ code can call OpenCV functions.
@@ -45,6 +45,10 @@ This project requires a specific NDK and OpenCV setup to build.
 
 ## 📸 Screenshots
 
-*(Placeholder: A screenshot of the final working app will be added here.)*
+Here is the output from the completed phases:
 
-Current output is a solid blue screen with a toast message: **"OpenCV version: 4.12.0"**.
+### Phase 1 & 2: Camera Feed + JNI Toast
+![Phase 1-2 Output](WhatsApp%20Image%202025-11-13%20at%2020.27.26.jpeg)
+
+### Phase 3 & 4: OpenGL Screen + OpenCV Toast
+![Phase 3-4 Output](WhatsApp%20Image%202025-11-13%20at%2021.05.14.jpeg)
